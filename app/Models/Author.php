@@ -15,8 +15,8 @@ class Author extends Model
 
     protected $guarded = [];
 
-    public function authors()
+    public function books()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Book::class);
     }
 }
