@@ -13,7 +13,7 @@
             <tbody>
             @foreach($authors as $author)
                 <tr>
-                    <td><h6>{{$author->first_name . ' ' . $author->last_name}}</h6></td>
+                    <td><h6>{{$author->name . ' ' . $author->surname}}</h6></td>
                     <td>@foreach($author->books as $book){{$book->title}}<br>@endforeach</td>
                 </tr>
                 </tr>
