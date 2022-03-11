@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\Admin\Book;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Book\StoreRequest;
 use App\Models\AuthorBook;
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'title' => 'string',
-            'year' => 'numeric',
-        ]);
+        $data = $request->validated();
         $authors = request()->validate([
             'authors' => 'array',
         ]);

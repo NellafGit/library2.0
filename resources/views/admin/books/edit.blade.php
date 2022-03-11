@@ -12,7 +12,7 @@
             <div class="form-group mt-2">
                 <label for="year">Year</label>
                 <input type="number" name="year" class="form-control mt-1" id="year" placeholder="Year"
-                       value="{{$book->id}}">
+                       value="{{$book->year}}">
             </div>
             <div class="form-group mt-2">
                 <label for="author">Choosen author</label>
