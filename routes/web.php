@@ -17,20 +17,24 @@ Route::get('/','LibraryController@index')->name('library.index');
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'] , function () {
-    Route::get('/admin/authors', 'Admin\AuthorController@index' )->name('author.index');
-    Route::get('admin/authors/create', 'Admin\AuthorController@create')->name('author.create');
-    Route::post('admin/authors', 'Admin\AuthorController@store')->name('author.store');
-    Route::get('admin/authors/{author}', 'Admin\AuthorController@show')->name('author.show');
-    Route::get('admin/authors/{author}/edit', 'Admin\AuthorController@edit')->name('author.edit');
-    Route::patch('admin/authors/{author}', 'Admin\AuthorController@update')->name('author.update');
-    Route::delete('admin/authors/{author}', 'Admin\AuthorController@destroy')->name('author.delete');
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin\Author'] , function () {
+    Route::get('/admin/authors', 'IndexController' )->name('author.index');
+    Route::get('admin/authors/create', 'CreateController')->name('author.create');
+    Route::post('admin/authors', 'StoreController')->name('author.store');
+    Route::get('admin/authors/{author}/edit', 'EditController')->name('author.edit');
+    Route::patch('admin/authors/{author}', 'UpdateController')->name('author.update');
+    Route::delete('admin/authors/{author}', 'DestroyController')->name('author.delete');
 
-    Route::get('admin/books', 'Admin\BookController@index')->name('book.index');
-    Route::get('admin/books/create','Admin\BookController@create')->name('book.create');
-    Route::post('admin/books', 'Admin\BookController@store')->name('book.store');
-    Route::get('admin/books/{book}', 'Admin\BookController@show')->name('book.show');
-    Route::get('admin/books/{book}/edit', 'Admin\BookController@edit')->name('book.edit');
-    Route::patch('admin/books/{book}', 'Admin\BookController@update')->name('book.update');
-    Route::delete('admin/books/{book}', 'Admin\BookController@destroy')->name('book.delete');
+
 });
+
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin\Book'] , function () {
+    Route::get('admin/books', 'IndexController')->name('book.index');
+    Route::get('admin/books/create','CreateController')->name('book.create');
+    Route::post('admin/books', 'StoreController')->name('book.store');
+    Route::get('admin/books/{book}/edit', 'EditController')->name('book.edit');
+    Route::patch('admin/books/{book}', 'UpdateController')->name('book.update');
+    Route::delete('admin/books/{book}', 'DestroyController')->name('book.delete');
+});
+
+
