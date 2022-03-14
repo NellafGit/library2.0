@@ -7,7 +7,7 @@ use App\Models\AuthorBook;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     public function __invoke(Book $book)
     {
