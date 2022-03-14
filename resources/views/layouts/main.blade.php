@@ -18,11 +18,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    @cannot('view', auth()->user())
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('login')}}">Login</a>
                         </li>
                     </ul>
+                    @endcannot
+                    @can('view', auth()->user())
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('author.index')}}">Admin</a>
+                        </li>
+                    </ul>
+                    @endcan
                 </div>
             </nav>
         </div>
