@@ -7,7 +7,7 @@ use App\Http\Requests\Author\StoreRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {

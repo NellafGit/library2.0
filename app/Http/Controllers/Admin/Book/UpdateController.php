@@ -8,21 +8,15 @@ use App\Models\AuthorBook;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(Book $book, UpdateRequest $request)
     {
         AuthorBook::where('book_id', '=', $book->id)->delete();
         $data = $request->validated();
-        $authors = request()->input('authors');
+        $authors = $request->input('authors');
 
-        foreach ($authors as $author) {
-            AuthorBook::create([
-                'author_id' => $author,
-                'book_id' => $book->id,
-            ]);
-        }
-        $book->update($data);
+       $this->service->update($data, $authors, $book);
 
         return redirect()->route('book.index');
     }

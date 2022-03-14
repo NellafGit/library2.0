@@ -15,16 +15,7 @@ class StoreController extends Controller
         $authors = request()->validate([
             'authors' => 'array',
         ]);
-        $book = Book::create($data);
-        if ($authors) {
-            foreach ($authors['authors'] as $author) {
-                AuthorBook::create([
-                    'author_id' => $author,
-                    'book_id' => $book->id,
-                ]);
-            }
-        }
-
+      $this->service->store($data, $authors);
         return redirect()->route('book.index');
     }
 }
